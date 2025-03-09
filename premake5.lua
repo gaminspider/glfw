@@ -3,7 +3,8 @@
 project "GLFW"
 	kind "StaticLib"
 	language "C"
-    
+	staticruntime "On"
+
 	targetdir ("bin/" .. Outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. Outputdir .. "/%{prj.name}")
 
@@ -40,9 +41,9 @@ project "GLFW"
 	}
 
 	filter "system:windows"
-		buildoptions { "-std=c11", "-lgdi32" }
+		buildoptions { "/std:c11" }
+		links { "gdi32.lib" }
 		systemversion "latest"
-		staticruntime "On"
 
 		files
 		{
@@ -69,3 +70,16 @@ project "GLFW"
 
 		filter { "system:windows", "configurations:Release" }
 		 buildoptions "/MT"
+
+		filter "configurations:Debug"
+			runtime "Debug"
+			symbols "On"
+
+		filter "configurations:Release"
+			runtime "Release"
+			optimize "On"
+
+
+
+
+
