@@ -103,6 +103,6 @@ tests/window
 tests/windows
 
 
-bin-int/
-bin/
+bin-int/*
+bin/*
 
